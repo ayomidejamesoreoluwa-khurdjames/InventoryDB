@@ -24,15 +24,17 @@ phone: {
     },
 role: {
         type: String,
-        enum: ['admin', 'user'],
+        enum: ['Superadmin', 'Storekeeper', 'Salesperson', 'user'],
         default: 'user'
     },
-    hasAtmCard: {
+    HasAdminAccess: {
         type: Boolean,
         default: false
     },
-
-    timestamps: true
-})
+}, 
+  { timestamps: true }
+);
 
 const User = mongose.model('User', userSchema);
+
+module.exports = User;
