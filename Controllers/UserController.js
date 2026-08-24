@@ -68,7 +68,7 @@ exports.loginUser = async (req, res) => {
 
 
     const jwt = require('jsonwebtoken');
-    const token = jwt.sign({ id: newUser._id, name: newUser.name, email: newUser.email }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign({ id: foundUser._id, name: foundUser.name, email: foundUser.email, role: foundUser.role, HasAdminAccess: foundUser.HasAdminAccess }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.status(200).json({ message: 'Login Successful', token });
 } catch (error)  {
