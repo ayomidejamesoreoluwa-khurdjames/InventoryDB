@@ -1,4 +1,4 @@
-// require('dotenv').config();
+require('dotenv').config();
 // const express = require('express');
 // const app = express();
 // const connectDB = require('./Config/databaseConfig');
@@ -15,19 +15,29 @@
 //   });
 // }).catch(err => console.log(err));
 
+// const dotenv = require('dotenv');
+const path = require('path');
+require('dotenv').config({ path: path.resolve(__dirname, '.env') });
 
+console.log("ENV PATH:", path.resolve(__dirname, '.env'));
+console.log("CLOUD_KEY:", process.env.CLOUDINARY_API_KEY);
+console.log("EMAIL_USER:", process.env.EMAIL_USER);
 
 const express = require('express');
+
+
 const app = express();
 
-const dotenv = require('dotenv');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 const productRoute = require('./Routes/ProductRoute');
 const userRoute = require('./Routes/UserRoute');
 
 
-dotenv.config();
+// dotenv.config();
 
-app.use(express.json());
+
 
 app.use('/products', productRoute);
 app.use('/user', userRoute);
